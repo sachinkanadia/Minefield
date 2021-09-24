@@ -23,9 +23,10 @@ namespace Minefield.Core.Game
         {
             _Board = _MineAllocator.ClearMines(_Board);
             _Board = _MineAllocator.AllocateMines(_Board, minesToAllocate);
-
+            var columns = _Board.Squares.GetLength(1);
+            
             Square startSquare = null;
-            for (var c = 0; c < Globals.BOARD_COLUMN_SIZE; c++)
+            for (var c = 0; c < columns; c++)
             {
                 if (_Board.Squares[0, c].HasMine)
                     continue;
@@ -46,9 +47,12 @@ namespace Minefield.Core.Game
             if (_Player.IsGameOver)
                 return _Player;
 
-            if (row < 0 || row > (Globals.BOARD_ROW_SIZE - 1))
+            var rows = _Board.Squares.GetLength(0);
+            var columns = _Board.Squares.GetLength(1);
+
+            if (row < 0 || row > (rows - 1))
                 throw new IndexOutOfRangeException();
-            if (col < 0 || col > (Globals.BOARD_COLUMN_SIZE - 1))
+            if (col < 0 || col > (columns - 1))
                 throw new IndexOutOfRangeException();
 
             var nextPosition = _Board.Squares[row, col];

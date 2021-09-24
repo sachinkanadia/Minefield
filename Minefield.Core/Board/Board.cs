@@ -5,9 +5,12 @@ namespace Minefield.Core.Board
     {
         internal Board()
         {
-            for (var r = 0; r < Globals.BOARD_ROW_SIZE; r++)
+            var rows = _Squares.GetLength(0);
+            var columns = _Squares.GetLength(1);
+
+            for (var r = 0; r < rows; r++)
             {
-                for (var c = 0; c < Globals.BOARD_COLUMN_SIZE; c++)
+                for (var c = 0; c < columns; c++)
                 {
                     _Squares[r, c] = new Square(r, c);
                 }

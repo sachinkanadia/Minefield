@@ -10,10 +10,13 @@ namespace Minefield.Core.Mines
         {
             var rndm = new Random();
 
+            var rows = board.Squares.GetLength(0);
+            var columns = board.Squares.GetLength(1);
+
             for (var i = 0; i < minesToAllocate; i++)
-            {
-                var row = rndm.Next(0, Globals.BOARD_ROW_SIZE);
-                var col = rndm.Next(0, Globals.BOARD_COLUMN_SIZE);
+            {                
+                var row = rndm.Next(0, rows);
+                var col = rndm.Next(0, columns);
 
                 if (board.Squares[row, col].HasMine)
                 {
@@ -30,9 +33,12 @@ namespace Minefield.Core.Mines
 
         public IBoard ClearMines(IBoard board)
         {
-            for (var r = 0; r < Globals.BOARD_ROW_SIZE; r++)
+            var rows = board.Squares.GetLength(0);
+            var columns = board.Squares.GetLength(1);
+
+            for (var r = 0; r < rows; r++)
             {
-                for (var c = 0; c < Globals.BOARD_COLUMN_SIZE; c++)
+                for (var c = 0; c < columns; c++)
                 {
                     board.Squares[r, c].HasMine = false;
                 }
